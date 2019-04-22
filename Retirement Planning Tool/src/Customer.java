@@ -51,7 +51,10 @@ public class Customer {
 		this.debts = debts;
 		yearsInRetirement = ageOfDeath - retirementAge;
 	}
-
+/**
+ * 
+ * @return name will be used in the Results Method
+ */
 	public String getName() {
 		return name;
 	}
