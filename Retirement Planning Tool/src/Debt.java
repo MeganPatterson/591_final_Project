@@ -29,35 +29,71 @@ public class Debt {
 		this.interestRate = rate;
 		this.monthlyPayment = pmt;
 	}
+	
+	public void debtPaydown() {
+	
+	}
 
+	/**
+	 * Getter method for debt type
+	 * @return debtType
+	 */
 	public String getDebtType() {
 		return debtType;
 	}
 
+	/**
+	 * Setter method for debt type
+	 * @param debtType the type of debt the client owns
+	 */
 	public void setDebtType(String debtType) {
 		this.debtType = debtType;
 	}
 
+	/**
+	 * Getter method for amount
+	 * @return amount
+	 */
 	public double getAmount() {
 		return amount;
 	}
 
+	/**
+	 * Setter method for amount
+	 * @param amount The dollar value of the debt
+	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
+	/**
+	 * Getter method for interest rate
+	 * @return interestRate
+	 */
 	public double getInterestRate() {
 		return interestRate;
 	}
 
+	/**
+	 * Setter method for interestRate
+	 * @param interestRate The interest rate on the debt
+	 */
 	public void setInterestRate(double interestRate) {
 		this.interestRate = interestRate;
 	}
 
+	/**
+	 * Getter method for monthly payment
+	 * @return monthlyPayment
+	 */
 	public double getMonthlyPayment() {
 		return monthlyPayment;
 	}
 
+	/**
+	 * Setter method for monthly payment
+	 * @param monthlyPayment the monthly debt payment
+	 */
 	public void setMonthlyPayment(double monthlyPayment) {
 		this.monthlyPayment = monthlyPayment;
 	}

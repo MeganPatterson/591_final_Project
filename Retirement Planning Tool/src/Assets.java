@@ -26,26 +26,50 @@ public class Assets {
 		this.yield = yld;
 	}
 
+	/**
+	 * Getter method for assetType
+	 * @return assetType
+	 */
 	public String getAssetType() {
 		return assetType;
 	}
 
+	/**
+	 * Setter method for assetType
+	 * @param assetType The type of asset. Stock, bond, etc
+	 */
 	public void setAssetType(String assetType) {
 		this.assetType = assetType;
 	}
-
+	
+	/**
+	 * Getter method for amount.
+	 * @return amount
+	 */
 	public double getAmount() {
 		return amount;
 	}
 
+	/**
+	 * Setter method for amount
+	 * @param amount The amount of asset that is owned
+	 */
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
+	/**
+	 * Getter method for yield
+	 * @return yield
+	 */
 	public double getYield() {
 		return yield;
 	}
 
+	/**
+	 * Setter method for yield
+	 * @param yield Annual yield on the asset in decimal form.
+	 */
 	public void setYield(double yield) {
 		this.yield = yield;
 	}

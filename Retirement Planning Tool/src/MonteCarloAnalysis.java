@@ -17,15 +17,43 @@ public class MonteCarloAnalysis {
 		this.marketReturns = mrktReturns;
 		this.client = client;
 	}
-
+	
+	public double assetGrowth(int years) {
+		double totalAssets = 0;
+		double tempAsset = 0;
+		
+		for(int j = 0; j < client.getAssets().size(); j++) {
+			tempAsset = client.getAssets().get(j).getAmount();	
+			
+			for(int k = 0; k < years; k++) {
+				tempAsset = tempAsset * ( 1 + client.getAssets().get(j).getYield() );
+				tempAsset = tempAsset * ( 1 + marketReturns[k][1]);
+			}
+			totalAssets = totalAssets + tempAsset;	
+		}
+		return totalAssets;
+	}
+	
+	/**
+	 * Getter method for inflation rate
+	 * @return inflationRate
+	 */
 	public double getInflationRate() {
 		return inflationRate;
 	}
 
+	/**
+	 * Getter method for market returns.
+	 * @return marketReturns
+	 */
 	public double[][] getMarketReturns() {
 		return marketReturns;
 	}
 
+	/**
+	 * Getter method for client
+	 * @return client 
+	 */
 	public Customer getClient() {
 		return client;
 	}

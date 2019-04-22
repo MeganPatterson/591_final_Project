@@ -51,66 +51,116 @@ public class Customer {
 		this.debts = debts;
 		yearsInRetirement = ageOfDeath - retirementAge;
 	}
-/**
- * 
- * @return name will be used in the Results Method
- */
+
+	/**
+	 * Getter method for name
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Getter method for currentAge
+	 * @return currentAge
+	 */
 	public int getCurrentAge() {
 		return currentAge;
 	}
 
+	/**
+	 * Getter method for retirementAge
+	 * @return retirementAge
+	 */
 	public int getRetirementAge() {
 		return retirementAge;
 	}
-
+	
+	/**
+	 * Getter method for taxRate
+	 * @return taxRate
+	 */
 	public double getTaxRate() {
 		return taxRate;
 	}
 
+	/**
+	 * Getter method for RiskLevel
+	 * @return riskLevel
+	 */
 	public int getRiskLevel() {
 		return riskLevel;
 	}
 
+	/**
+	 * Getter method for ageOfDeath
+	 * @return ageOfDeath
+	 */
 	public int getAgeOfDeath() {
 		return ageOfDeath;
 	}
 
+	/**
+	 * Getter method for yearsInRetirement
+	 * @return yearsInRetirement
+	 */
 	public int getYearsInRetirement() {
 		return yearsInRetirement;
 	}
 
+	/**
+	 * Getter method for assets
+	 * @return assets
+	 */
 	public ArrayList<Assets> getAssets() {
 		return assets;
 	}
 
+	/**
+	 * Getter method for current Income
+	 * @return currentIncome
+	 */
 	public double getCurrentIncome() {
 		return currentIncome;
 	}
-
+	
+	/**
+	 * Getter method for current expenses
+	 * @return currentExpenses
+	 */
 	public double getCurrentExpenses() {
 		return currentExpenses;
 	}
 
+	/**
+	 * Getter method for retirement Income
+	 * @return retirementIncome
+	 */
 	public double getRetirementIncome() {
 		return retirementIncome;
 	}
-
+	
+	/**
+	 * Getter method for retirement expenses
+	 * @return retirementExpenses
+	 */
 	public double getRetirementExpenses() {
 		return retirementExpenses;
 	}
 
+	/**
+	 * Getter method for savingsGoal
+	 * @return savingsGoal
+	 */
 	public double getSavingsGoal() {
 		return savingsGoal;
 	}
 
+	/**
+	 * Getter method for debts
+	 * @return debts
+	 */
 	public ArrayList<Debt> getDebts() {
 		return debts;
 	}
-	
-	
-	
 }
