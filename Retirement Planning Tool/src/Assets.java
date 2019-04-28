@@ -1,6 +1,6 @@
 
 public class Assets {
-	private String assetType;  //Type of asset, for example cash/stocks/bonds/house/debt
+	private int assetType;  //Type of asset. 1 for equity, 2 for FI, 3 for RE, 4 for other.
 	private double amount; //the amount owned of the asset
 	private double yield;  //Expressed in percentage form, what does the asset yield. Example: .04 for 4%
 	
@@ -8,7 +8,7 @@ public class Assets {
 	 * Constructs a blank Asset object and defaults the variables 
 	 */
 	public Assets() {
-		this.assetType = "";
+		this.assetType = 0;
 		this.amount = 0.0;
 		this.yield = 0.0;
 	}
@@ -20,7 +20,7 @@ public class Assets {
 	 * @param amt   The amount of the asset that is owned
 	 * @param yld   The annual yield of the assets in decimal format. .05 = 5%
 	 */
-	public Assets(String type, double amt, double yld) {
+	public Assets(int type, double amt, double yld) {
 		this.assetType = type;
 		this.amount = amt;
 		this.yield = yld;
@@ -30,7 +30,7 @@ public class Assets {
 	 * Getter method for assetType
 	 * @return assetType
 	 */
-	public String getAssetType() {
+	public int getAssetType() {
 		return assetType;
 	}
 
@@ -38,7 +38,7 @@ public class Assets {
 	 * Setter method for assetType
 	 * @param assetType The type of asset. Stock, bond, etc
 	 */
-	public void setAssetType(String assetType) {
+	public void setAssetType(int assetType) {
 		this.assetType = assetType;
 	}
 	
