@@ -17,6 +17,15 @@ public class Customer {
 	private double savingsGoal;   //Goal for savings at start of retirement.
 	
 	/**
+	 * General constructor for the customer class.  
+	 */
+	public Customer() {
+		assets = new ArrayList<Assets>();
+		debts = new ArrayList<Debt>();
+	}
+	
+	
+	/**
 	 * Constructor for the Customer class. Is passed through all the data that are customer has 
 	 * provided for us, and sets our instance variables equal to this data.  
 	 * @param name  Client's name
@@ -36,22 +45,182 @@ public class Customer {
 			double curIncome, double curExp, double retireIncome, double retireExp, double savingsGoal, 
 			ArrayList<Assets> assets, ArrayList<Debt> debts) {
 		
-		this.name = name;
+		this.name = name;   
 		this.currentAge = curAge;
 		this.retirementAge = retireAge;
-		this.taxRate = taxRate;
+		this.taxRate = taxRate; 
 		this.riskLevel = riskLvl;
 		this.ageOfDeath = deathAge;
-		this.currentIncome = curIncome;
-		this.currentExpenses = curExp;
+		this.currentIncome = curIncome; 
+		this.currentExpenses = curExp; 
 		this.retirementIncome = retireIncome;
 		this.retirementExpenses = retireExp;
-		this.savingsGoal = savingsGoal;
-		this.assets = assets;
+		this.savingsGoal = savingsGoal; 
+		this.assets = assets; 
 		this.debts = debts;
-		yearsInRetirement = ageOfDeath - retirementAge;
+		yearsInRetirement = ageOfDeath - retirementAge; 
 	}
 
+	/**
+	 * This method will prompt the user to enter all of the data that we need to get a complete profile on them.  
+	 * At the same time it will also check to make sure all of the users inputs are valid and keep asking the client for additional 
+	 * assets if they have multiple things they need to enter.  
+	 */
+	public void getCustomerInfo() {
+		System.out.println("Welcome to your retirement planning tool.  Lets start by gathering some information about your self.");
+		System.out.println("There are quite a few questions so this make take a couple minutes.");
+		Scanner userInput = new Scanner(System.in);
+		
+		//Get customer name
+		System.out.print("Please enter your name: ");
+		name = userInput.nextLine();
+		
+		//Get customer age.  Make sure it can only be an int.
+		System.out.print("\nWhat is your current age: ");
+		while(!userInput.hasNextInt()) {
+			System.out.print("Please enter your age (numbers only): ");
+			userInput.next();
+		}
+		currentAge = userInput.nextInt();
+		
+		//Get customer's retirement age.  Make sure it can only be an int.
+		System.out.print("\nWhat age do you plan to retire at: ");
+		while(!userInput.hasNextInt()) {
+			System.out.print("Please enter your retirement age (numbers only): ");
+			userInput.next();
+		}
+		retirementAge = userInput.nextInt();
+		
+		//Get customers life expectancy.  Make sure it can only be an int
+		System.out.print("\nWhat age do you expect to live to: ");
+		while(!userInput.hasNextInt()) {
+			System.out.print("Please enter your estimated life span (numbers only): ");
+			userInput.next();
+		}
+		ageOfDeath = userInput.nextInt();
+		yearsInRetirement = ageOfDeath - retirementAge;
+		
+		//Get customers annual pre-tax income.  Make sure it's double only
+		System.out.println("\nNow let's get some information on your finances.");
+		System.out.print("What is your current annual pre-tax income: ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your current annual pre-tax income(numbers only): ");
+			userInput.next();
+		}
+		currentIncome = userInput.nextDouble();
+		
+		//Get customer's current annual expenses.  Make sure it's double format only
+		System.out.print("\nHow much are your current annual expenses: ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your current annual expenses(numbers only): ");
+			userInput.next();
+		}
+		currentExpenses = userInput.nextDouble();
+		
+		//Get customer's tax rate.  Make sure it's a double and in decimal form.
+		System.out.print("\nWhat is your current effective tax rate as a decimal (ex: 35% = .35): ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your effective tax rate(numbers only): ");
+			userInput.next();
+		}
+		taxRate = userInput.nextDouble();
+		while(taxRate > 1) {
+			System.out.print("Please make sure your tax rate is in decimal format: ");
+			while(!userInput.hasNextDouble()) {
+				System.out.print("Please enter your effective tax rate(numbers only): ");
+				userInput.next();
+			}
+			taxRate = userInput.nextDouble();
+		}
+		
+		//Get customer's retirement income
+		System.out.println("\nWhat do you expect your annual income to be during retirement");
+		System.out.print("(Anything not included in your assets like pension or social security): ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your expected retirement income(numbers only): ");
+			userInput.next();
+		}
+		retirementIncome = userInput.nextDouble();
+
+		//Get customer's retirement expenses
+		System.out.print("\nWhat do you expect your annual expenses to be during retirement: ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your expected retirement expenses(numbers only): ");
+			userInput.next();
+		}
+		retirementExpenses = userInput.nextDouble();
+		
+		//Get customers retirement savings goal
+		System.out.print("\nWhat is your savings goal for the start of your retirement? ");
+		while(!userInput.hasNextDouble()) {
+			System.out.print("Please enter your savings goal(numbers only): ");
+			userInput.next();
+		}
+		savingsGoal = userInput.nextDouble();
+		
+		//Going to ask the client if he already owns any assets and if so to enter them
+		//will keep asking him until he has entered all of his assets and we are going to
+		//add them all to an Assets ArrayList
+		System.out.print("\nNow let's gather some information on any assets you may have (equities, bonds, real estate investments");
+		System.out.print("\nDo you have any current assets you want to enter (Y or N)? ");
+		String answer = userInput.next();
+		//while loop will keep running keeps saying he has more assets to enter
+		while(answer.charAt(0) == 'Y' || answer.charAt(0) == 'y') {
+			int assetAnswer = 0;
+			
+			while(assetAnswer < 1 || assetAnswer > 4) {
+				System.out.print("\nWhat type of asset would you like to enter.");
+				System.out.print("\n(1 for Equity. 2 for Fixed Income. 3 for Real Estate. 4 for other): ");
+				while(!userInput.hasNextInt()) {
+					System.out.print("Please choose one of the 4 choices only: ");
+					userInput.next();
+				}
+				assetAnswer = userInput.nextInt();
+			}
+			
+			System.out.print("\nHow much of this asset do you currently own? ");
+			while(!userInput.hasNextDouble()) {
+				System.out.print("Please enter amount as a number only: ");
+				userInput.next();
+			}
+			double assetAmount = userInput.nextDouble();
+			
+			System.out.print("\nWhat is the current annual yield on the asset(5% = .05): ");
+			while(!userInput.hasNextDouble()) {
+				System.out.print("Please enter the annual yield(numbers only): ");
+				userInput.next();
+			}
+			double assetYield = userInput.nextDouble();
+			while(assetYield > 1) {
+				System.out.print("Please make sure the yield is in decimal format: ");
+				while(!userInput.hasNextDouble()) {
+					System.out.print("Please enter the annual yield(numbers only): ");
+					userInput.next();
+				}
+				assetYield = userInput.nextDouble();
+			}
+			
+			Assets newAsset = new Assets(assetAnswer, assetAmount, assetYield);
+			assets.add(newAsset);
+			
+			System.out.print("\nWould you like to enter another asset(Y or N)? ");
+			answer = userInput.next();
+		} //end while loop for getting asset information
+		
+		//Going to ask the client about his ability to take risk
+		riskLevel  = 0;
+		System.out.print("\nFinally, on a scale of 1 to 100, how would you rate your willingness to take risk? ");
+		while(riskLevel < 1 || riskLevel > 100) {
+			while(!userInput.hasNextInt()) {
+				System.out.print("Please enter a number from 1 to 100: ");
+				userInput.next();
+			}
+			riskLevel = userInput.nextInt();
+		}
+		userInput.close();
+	}
+	
+	
 	/**
 	 * Getter method for name
 	 * @return name
@@ -163,4 +332,12 @@ public class Customer {
 	public ArrayList<Debt> getDebts() {
 		return debts;
 	}
+	
+	public static void main(String[] args) {
+		Customer test = new Customer();
+		test.getCustomerInfo();
+		//MonteCarloAnalysis mcTest = new MonteCarloAnalysis(.02, test);
+		
+	}
+	
 }
