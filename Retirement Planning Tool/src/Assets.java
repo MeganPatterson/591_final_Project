@@ -1,4 +1,9 @@
-
+/**
+ * This class creates a type of financial asset. It will hold
+ * the type of the asset, the amount, and the yield.  
+ * @author Scott Hitchcock and Megan Patterson
+ *
+ */
 public class Assets {
 	private int assetType;  //Type of asset. 1 for equity, 2 for FI, 3 for RE, 4 for other.
 	private double amount; //the amount owned of the asset
@@ -9,7 +14,7 @@ public class Assets {
 	 */
 	public Assets() {
 		this.assetType = 0;
-		this.amount = 0.0;
+		this.amount = 0.0;  
 		this.yield = 0.0;
 	}
 	
@@ -25,7 +30,26 @@ public class Assets {
 		this.amount = amt;
 		this.yield = yld;
 	}
+	
+	/**
+	 * This method compounds the specified asset by it's yield over a certain number of years
+	 * @param years The number of years to compound for
+	 */
+	public void compoundAsset(int years) {
+		double compounding =  Math.pow(1 + yield, years);
+		amount = amount * compounding;
+	}
 
+	/**
+	 * Creates a copy of the object that is being passed through.
+	 * @param anotherAsset The Asset object we wish to copy
+	 */
+	public Assets(Assets anotherAsset) {
+		this.assetType = anotherAsset.assetType;
+		this.amount = anotherAsset.amount;
+		this.yield = anotherAsset.yield;
+	}
+	
 	/**
 	 * Getter method for assetType
 	 * @return assetType
@@ -73,7 +97,4 @@ public class Assets {
 	public void setYield(double yield) {
 		this.yield = yield;
 	}
-
-	
-	
 }

@@ -1,4 +1,3 @@
-
 import javax.swing.JFrame;  
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -23,37 +22,31 @@ public class Output extends JFrame{
 
 
 
-	private static final long serialVersionUID = 1L;  
+	 
 	/**
 	 * This constructor takes in information to make the graph
 	 * @param appTitle
 	 * including, the title, axis labels and dataset
 	 */
-	public Output(String appTitle) {  
-		super(appTitle);
-
-		//Initializes chart and dataset
-		CategoryDataset dataset = createDataset();  
-		JFreeChart chart=ChartFactory.createBarChart(  
-				"Retirement", //Chart Title  
-				"Age", // Category axis  
-				"Amount in Dollars", // Value axis  
-				dataset,  
-				PlotOrientation.VERTICAL,  
-				// confirm the plot orientation, display a legend (true = yes), display  tooltips
-				true,true,false  
-				);  
-
-		/**
-		 * The ChartPanel creates a panel that takes in 
-		 * the information that is stored in the String chart 
-		 */
-
-		ChartPanel panel=new ChartPanel(chart);  
-		panel.setBackground(new Color(240, 240, 240));
-		setContentPane(panel);
-		panel.setLayout(null);
-	}  // closes constructor  
+	
+	public Output( String applicationTitle , String chartTitle ) {
+	      super( applicationTitle );  
+	      
+	      JFreeChart barChart = ChartFactory.createBarChart(
+	         chartTitle,           
+	         "Category",            
+	         "Score",            
+	         createDataset(),          
+	         PlotOrientation.VERTICAL,           
+	         true, true, false);
+	    //Initializes chart
+	      ChartPanel chartPanel = new ChartPanel( barChart );        
+	      chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
+	      setContentPane( chartPanel );
+	
+	} // closes constructor  
+	
+	
 
 
 	/**
@@ -67,12 +60,12 @@ public class Output extends JFrame{
 	private CategoryDataset createDataset() {  
 
 
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
-		//Customer newCustomer = new Customer();//create a new customer
-		Customer newCustomer = newForm.createCustomer();
-		//newCustomer.getCustomerInfo();   //Call method to get all our relevant info on the customer
 		
 
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
+		Customer newCustomer = new Customer();//create a new customer
+		//Customer newCustomer = newForm.createCustomer();
+		//newCustomer.getCustomerInfo();   //Call method to get all our relevant info on the customer
 
 
 		//Run a monte carlo analysis based on the information our new customer has provided
@@ -98,3 +91,5 @@ public class Output extends JFrame{
 }  
 
 	
+
+
